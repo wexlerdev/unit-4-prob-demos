@@ -223,7 +223,7 @@
       const plotW = w - pad.l - pad.r, plotH = h - pad.t - pad.b;
       const xMin = -4, xMax = 4;
 
-      ctx.fillStyle = '#1a1b26';
+      ctx.fillStyle = '#1e1b2e';
       ctx.fillRect(0, 0, w, h);
 
       const x2px = xx => pad.l + ((xx - xMin) / (xMax - xMin)) * plotW;
@@ -248,7 +248,7 @@
 
       // Draw curve
       ctx.beginPath();
-      ctx.strokeStyle = '#7aa2f7';
+      ctx.strokeStyle = '#c4b5fd';
       ctx.lineWidth = 2;
       for (let x = xMin; x <= xMax; x += 0.08) ctx.lineTo(x2px(x), y2py(normPdf(x)));
       ctx.stroke();
@@ -268,7 +268,7 @@
         ctx.stroke();
       }
 
-      ctx.fillStyle = '#a9b1d6';
+      ctx.fillStyle = '#b8add9';
       ctx.font = '11px sans-serif';
       ctx.fillText('-z', x2px(-zCrit) - 18, h - 8);
       ctx.fillText('z', x2px(zCrit) - 8, h - 8);

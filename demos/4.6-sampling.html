@@ -95,7 +95,7 @@
           <input type="number" id="numSamples" value="5000" min="500" max="20000" step="500">
         </div>
       </div>
-      <button id="runClt" style="padding: 0.5rem 1rem; margin: 0.5rem 0; cursor: pointer; background: var(--accent); border: none; border-radius: 4px; color: white;">Run simulation</button>
+      <button id="runClt" style="padding: 0.5rem 1rem; margin: 0.5rem 0; cursor: pointer; background: var(--accent); border: none; border-radius: 4px; color: var(--accent-fg);">Run simulation</button>
       <div class="result">Sample mean of \(\bar{X}\)s ≈ <span id="cltMean">—</span>, SD of \(\bar{X}\)s ≈ <span id="cltSd">—</span>, \(\sigma/\sqrt{n}\) = <span id="cltSe">—</span></div>
       <canvas id="cltChart" width="500" height="220"></canvas>
     </div>
@@ -188,7 +188,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       window.cltChart = new Chart(document.getElementById('cltChart').getContext('2d'), {
         type: 'bar',
-        data: { labels: [], datasets: [{ label: 'Count', data: [], backgroundColor: 'rgba(122,162,247,0.7)' }] },
+        data: { labels: [], datasets: [{ label: 'Count', data: [], backgroundColor: 'rgba(196,181,253,0.7)' }] },
         options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } }
       });
       updateSe();

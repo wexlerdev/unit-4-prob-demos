@@ -29,9 +29,9 @@
   letter-spacing: 0.1em;
   color: #fff;
   text-shadow:
-    3px 3px 0 #7aa2f7,
-    -2px -2px 0 #bb9af7,
-    0 0 12px rgba(122, 162, 247, 0.6);
+    3px 3px 0 #f5d547,
+    -2px -2px 0 #c4b5fd,
+    0 0 12px rgba(196, 181, 253, 0.6);
   animation: comicBurst 700ms ease-out forwards;
   white-space: nowrap;
 }
@@ -42,8 +42,8 @@
   inset: -30%;
   background: radial-gradient(
     circle,
-    rgba(122, 162, 247, 0.4) 0%,
-    rgba(187, 154, 247, 0.2) 40%,
+    rgba(196, 181, 253, 0.4) 0%,
+    rgba(245, 213, 71, 0.2) 40%,
     transparent 70%
   );
   border-radius: 50%;
@@ -59,9 +59,9 @@
 .flare-bubble.flare-big {
   font-size: 4.5rem;
   text-shadow:
-    4px 4px 0 #7aa2f7,
-    -3px -3px 0 #bb9af7,
-    0 0 20px rgba(122, 162, 247, 0.7);
+    4px 4px 0 #f5d547,
+    -3px -3px 0 #c4b5fd,
+    0 0 20px rgba(196, 181, 253, 0.7);
 }
 
 .flare-bubble.flare-subtle {
@@ -116,7 +116,7 @@
   transform: translate(-50%, -50%);
   font-family: 'Bangers', Impact, fantasy;
   font-size: 0.9rem;
-  color: #bb9af7;
+  color: #f5d547;
   opacity: 0;
   pointer-events: none;
   animation: sparklePop 500ms ease-out forwards;

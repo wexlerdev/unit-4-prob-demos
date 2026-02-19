@@ -147,11 +147,11 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       window.binomChart = new Chart(document.getElementById('binomChart').getContext('2d'), {
-        type: 'bar', data: { labels: [], datasets: [{ label: 'P(X=x)', data: [], backgroundColor: 'rgba(122,162,247,0.7)' }] },
+        type: 'bar', data: { labels: [], datasets: [{ label: 'P(X=x)', data: [], backgroundColor: 'rgba(245,213,71,0.7)' }] },
         options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } }
       });
       window.poisChart = new Chart(document.getElementById('poisChart').getContext('2d'), {
-        type: 'bar', data: { labels: [], datasets: [{ label: 'P(X=x)', data: [], backgroundColor: 'rgba(187,154,247,0.7)' }] },
+        type: 'bar', data: { labels: [], datasets: [{ label: 'P(X=x)', data: [], backgroundColor: 'rgba(196,181,253,0.7)' }] },
         options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } }
       });
       updateBinom(); updatePois();

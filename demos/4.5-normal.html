@@ -169,7 +169,7 @@
       }
       window.normChart = new Chart(document.getElementById('normChart').getContext('2d'), {
         type: 'line',
-        data: { labels: xs, datasets: [{ label: 'N(μ,σ²)', data: ys, fill: true, tension: 0.3, backgroundColor: 'rgba(122,162,247,0.1)', borderColor: 'rgb(122,162,247)' }] },
+        data: { labels: xs, datasets: [{ label: 'N(μ,σ²)', data: ys, fill: true, tension: 0.3, backgroundColor: 'rgba(196,181,253,0.1)', borderColor: 'rgb(196,181,253)' }] },
         options: { responsive: true, scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } }
       });
       updateNormal();
@@ -195,7 +195,7 @@
       const xMin = mu - 4 * sig, xMax = mu + 4 * sig;
       const plotW = w - pad.l - pad.r, plotH = h - pad.t - pad.b;
 
-      ctx.fillStyle = '#1a1b26';
+      ctx.fillStyle = '#1e1b2e';
       ctx.fillRect(0, 0, w, h);
 
       const x2px = x => pad.l + ((x - xMin) / (xMax - xMin)) * plotW;
@@ -203,9 +203,9 @@
 
       // Draw shaded bands (outer to inner)
       const bands = [
-        { lo: mu - 3*sig, hi: mu + 3*sig, color: 'rgba(122,162,247,0.15)' },
-        { lo: mu - 2*sig, hi: mu + 2*sig, color: 'rgba(122,162,247,0.25)' },
-        { lo: mu - sig, hi: mu + sig, color: 'rgba(122,162,247,0.4)' }
+        { lo: mu - 3*sig, hi: mu + 3*sig, color: 'rgba(196,181,253,0.15)' },
+        { lo: mu - 2*sig, hi: mu + 2*sig, color: 'rgba(196,181,253,0.25)' },
+        { lo: mu - sig, hi: mu + sig, color: 'rgba(196,181,253,0.4)' }
       ];
       bands.forEach(b => {
         ctx.beginPath();
@@ -222,7 +222,7 @@
 
       // Draw curve
       ctx.beginPath();
-      ctx.strokeStyle = 'rgb(122,162,247)';
+      ctx.strokeStyle = 'rgb(196,181,253)';
       ctx.lineWidth = 2;
       for (let x = xMin; x <= xMax; x += sig/15) {
         ctx.lineTo(x2px(x), y2py(normPdf(x, mu, sig)));
@@ -234,7 +234,7 @@
       ctx.beginPath();
       ctx.moveTo(pad.l, pad.t); ctx.lineTo(pad.l, h - pad.b); ctx.lineTo(w - pad.r, h - pad.b);
       ctx.stroke();
-      ctx.fillStyle = '#a9b1d6';
+      ctx.fillStyle = '#b8add9';
       ctx.font = '11px sans-serif';
       ctx.fillText('x', w - pad.r - 15, h - 5);
       [-2, -1, 0, 1, 2].forEach(z => {
@@ -252,7 +252,7 @@
       }
       window.normChart = new Chart(document.getElementById('normChart').getContext('2d'), {
         type: 'line',
-        data: { labels: xs, datasets: [{ label: 'N(μ,σ²)', data: ys, fill: true, tension: 0.3, backgroundColor: 'rgba(122,162,247,0.1)', borderColor: 'rgb(122,162,247)' }] },
+        data: { labels: xs, datasets: [{ label: 'N(μ,σ²)', data: ys, fill: true, tension: 0.3, backgroundColor: 'rgba(196,181,253,0.1)', borderColor: 'rgb(196,181,253)' }] },
         options: { responsive: true, scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } }
       });
       updateNormal();

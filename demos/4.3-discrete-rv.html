@@ -118,7 +118,7 @@
 
   <script src="../js/shared.js"></script>
   <script>
-    const coinData = { labels: ['0', '1', '2'], datasets: [{ label: 'P(X=x)', data: [0.25, 0.5, 0.25], backgroundColor: 'rgba(122,162,247,0.7)' }] };
+    const coinData = { labels: ['0', '1', '2'], datasets: [{ label: 'P(X=x)', data: [0.25, 0.5, 0.25], backgroundColor: 'rgba(245,213,71,0.7)' }] };
     const coinCtx = document.getElementById('coinChart').getContext('2d');
     new Chart(coinCtx, {
       type: 'bar',
@@ -143,7 +143,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       window.bonusChart = new Chart(document.getElementById('bonusChart').getContext('2d'), {
         type: 'bar',
-        data: { labels: ['Superior', 'Good', 'Fair', 'Poor'], datasets: [{ label: 'P(X=x)', data: [0.15,0.25,0.4,0.2], backgroundColor: 'rgba(187,154,247,0.7)' }] },
+        data: { labels: ['Superior', 'Good', 'Fair', 'Poor'], datasets: [{ label: 'P(X=x)', data: [0.15,0.25,0.4,0.2], backgroundColor: 'rgba(196,181,253,0.7)' }] },
         options: { scales: { y: { beginAtZero: true, max: 1 } }, plugins: { legend: { display: false } } }
       });
       updateBonus();

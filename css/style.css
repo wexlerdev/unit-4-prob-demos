@@ -2,14 +2,15 @@
 @import url('flare.css');
 
 :root {
-  --bg: #1a1b26;
-  --surface: #24283b;
-  --text: #c0caf5;
-  --text-dim: #a9b1d6;
-  --accent: #7aa2f7;
-  --accent-2: #bb9af7;
+  --bg: #1e1b2e;
+  --surface: #2d2640;
+  --text: #e6e0ff;
+  --text-dim: #b8add9;
+  --accent: #f5d547;
+  --accent-2: #c4b5fd;
+  --accent-fg: #1e1b2e;
   --success: #9ece6a;
-  --warning: #e0af68;
+  --warning: #e5b567;
   --error: #f7768e;
   --radius: 8px;
   --font: "DM Sans", "Segoe UI", system-ui, sans-serif;
@@ -139,8 +140,8 @@ header h1 {
 
 /* Concept block — learning objectives, when to use */
 .concept-block {
-  background: linear-gradient(135deg, rgba(122,162,247,0.08) 0%, rgba(187,154,247,0.06) 100%);
-  border: 1px solid rgba(122,162,247,0.2);
+  background: linear-gradient(135deg, rgba(196,181,253,0.12) 0%, rgba(196,181,253,0.06) 100%);
+  border: 1px solid rgba(196,181,253,0.25);
   border-radius: var(--radius);
   padding: 1.25rem 1.5rem;
   margin: 1.5rem 0 2rem;
@@ -290,7 +291,7 @@ header h1 {
   font-weight: 600;
 }
 .demo-table .highlight {
-  background: rgba(122, 162, 247, 0.15);
+  background: rgba(245, 213, 71, 0.2);
 }
 .demo-table .error-cell {
   background: rgba(247, 118, 142, 0.15);
