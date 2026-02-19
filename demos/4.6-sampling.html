@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.6 Sampling Distributions</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Unit 4: Probability and Statistical Inference</h1>
+    <p class="subtitle">4.6 — Sampling Distributions</p>
+  </header>
+
+  <main class="demo-page">
+    <a href="../index.html" class="back-link">← Back to all sections</a>
+
+    <h1>4.6: Sampling Distributions</h1>
+
+    <div class="concept-block">
+      <h2>What You'll Learn</h2>
+      <ul>
+        <li>Distinguish population (parameter \(\mu\)) from sample (statistic \(\bar{X}\))</li>
+        <li>Understand how \(\bar{X}\) and \(\hat{P}\) vary across samples—the sampling distribution</li>
+        <li>Apply the Central Limit Theorem: averages become normal as \(n\) increases</li>
+      </ul>
+      <p><strong>When to use:</strong> Bridge from probability to inference. Before computing CIs or p-values, we need the distribution of our estimator (e.g., \(\bar{X}\)) under repeated sampling.</p>
+      <p><strong>Prerequisites:</strong> <a href="4.5-normal.html">4.5</a> — normal distribution, z-scores.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Population vs Sample</h2>
+      <p><strong>Population</strong> parameter (e.g., \(\mu\)) is a constant. <strong>Sample</strong> statistic (e.g., \(\bar{X}\)) varies with each random sample. The <strong>sampling distribution</strong> is the probability distribution of a statistic over all possible samples.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Sampling Distribution of \(\bar{X}\)</h2>
+      <p>For random samples of size \(n\) from a population with mean \(\mu\) and variance \(\sigma^2\):</p>
+      <div class="formula">\[ E(\bar{X}) = \mu, \quad \text{Var}(\bar{X}) = \frac{\sigma^2}{n}, \quad \text{se}(\bar{X}) = \frac{\sigma}{\sqrt{n}} \]</div>
+      <p>Larger \(n\) → smaller standard error → sample mean more concentrated around \(\mu\).</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Central Limit Theorem</h2>
+      <p>The sum or average of many independent observations is approximately normal. Rule of thumb: use normal approximation when \(n \geq 30\).</p>
+      <div class="formula">\[ z = \frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \]</div>
+    </div>
+
+    <div class="content-section">
+      <h2>Sampling Distribution of \(\hat{P}\)</h2>
+      <p>For population proportion \(p\), sample proportion \(\hat{P} = X/n\).</p>
+      <div class="formula">\[ E(\hat{P}) = p, \quad \text{se}(\hat{P}) = \sqrt{\frac{p(1-p)}{n}} \]</div>
+      <p>Approximately normal when \(np \geq 5\) and \(n(1-p) \geq 5\).</p>
+    </div>
+
+    <h2>Interactive Demos</h2>
+    <div class="demo-box">
+      <h3>Standard Error of \(\bar{X}\) — Pizza Example</h3>
+      <p><strong>Story:</strong> Pizza diameters: \(\mu=16\) in, \(\sigma=0.8\) in. For \(n=2\): \(\text{se}=0.57\); for \(n=4\): \(\text{se}=0.40\). Averaging more pizzas reduces variability.</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label>\(\sigma\)</label>
+          <input type="number" id="sigma" value="0.8" min="0.1" step="0.1">
+        </div>
+        <div class="input-group">
+          <label>\(n\)</label>
+          <input type="number" id="nSe" value="4" min="1" max="100">
+        </div>
+      </div>
+      <div class="result">\(\text{se}(\bar{X}) = \sigma/\sqrt{n}\) = <span id="seVal">0.4</span></div>
+    </div>
+
+    <div class="demo-box">
+      <h3>CLT Simulation</h3>
+      <p>Draw many samples of size \(n\), compute \(\bar{X}\) each time. Histogram shows sampling distribution. Even with a skewed or uniform population, the sampling distribution of \(\bar{X}\) becomes normal as \(n\) grows. <strong>Coffee Happy Hour:</strong> Before campaign, spend was \(\mu=\$4.18\), \(\sigma=\$0.84\). With \(n=50\), \(\bar{X}\) is approximately normal.</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label>Population shape</label>
+          <select id="popShape">
+            <option value="uniform">Uniform</option>
+            <option value="skewed">Skewed</option>
+            <option value="normal">Normal</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>\(n\) (sample size)</label>
+          <input type="number" id="nClt" value="5" min="2" max="50">
+        </div>
+        <div class="input-group">
+          <label>Number of samples</label>
+          <input type="number" id="numSamples" value="5000" min="500" max="20000" step="500">
+        </div>
+      </div>
+      <button id="runClt" style="padding: 0.5rem 1rem; margin: 0.5rem 0; cursor: pointer; background: var(--accent); border: none; border-radius: 4px; color: white;">Run simulation</button>
+      <div class="result">Sample mean of \(\bar{X}\)s ≈ <span id="cltMean">—</span>, SD of \(\bar{X}\)s ≈ <span id="cltSd">—</span>, \(\sigma/\sqrt{n}\) = <span id="cltSe">—</span></div>
+      <canvas id="cltChart" width="500" height="220"></canvas>
+    </div>
+
+    <div class="demo-box">
+      <h3>Sample Proportion — Cyber-Attacks Example</h3>
+      <p>55% of firms had cyber-attack (\(p=0.55\)), \(n=100\). What is \(P(\hat{P} > 0.57)\)?</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label>\(p\)</label>
+          <input type="number" id="pProp" value="0.55" min="0.01" max="0.99" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>\(n\)</label>
+          <input type="number" id="nProp" value="100" min="5">
+        </div>
+        <div class="input-group">
+          <label>\(P(\hat{P} > k)\), \(k\)</label>
+          <input type="number" id="kProp" value="0.57" min="0" max="1" step="0.01">
+        </div>
+      </div>
+      <div class="result">
+        \(\text{se}(\hat{P})\) = <span id="seProp">0.0497</span><br>
+        \(P(\hat{P} > k)\) = <span id="pPropVal">0.3446</span>
+      </div>
+    </div>
+  </main>
+
+  <footer><a href="../index.html">← Back to all sections</a></footer>
+
+  <script src="../js/shared.js"></script>
+  <script src="../js/flare.js"></script>
+  <script>
+    function parseVal(id, def) { const v = parseFloat(document.getElementById(id)?.value); return isNaN(v) ? def : v; }
+
+    function sampleOne(pop) {
+      if (pop === 'uniform') return Math.random();
+      if (pop === 'skewed') return Math.pow(Math.random(), 2);
+      let s = 0;
+      for (let j = 0; j < 12; j++) s += Math.random();
+      return (s - 6) * 0.2 + 0.5;
+    }
+    function sampleFrom(pop, n) {
+      const arr = [];
+      for (let i = 0; i < n; i++) arr.push(sampleOne(pop));
+      return arr.reduce((a,b)=>a+b,0)/n;
+    }
+
+    function updateSe() {
+      const sig = parseVal('sigma', 0.8), n = parseVal('nSe', 4);
+      document.getElementById('seVal').textContent = (sig / Math.sqrt(n)).toFixed(4);
+    }
+
+    document.getElementById('runClt').addEventListener('click', function() {
+      if (typeof showFlare === 'function') {
+        showFlare('POW', this, { size: 'big', key: 'clt' });
+      }
+      const pop = document.getElementById('popShape').value;
+      const n = parseInt(parseVal('nClt', 5));
+      const numS = parseInt(parseVal('numSamples', 5000));
+      const means = [];
+      for (let i = 0; i < numS; i++) means.push(sampleFrom(pop, n));
+      const avg = means.reduce((a,b)=>a+b,0)/numS;
+      const variance = means.reduce((a,b)=>a+b*b,0)/numS - avg*avg;
+      const sd = Math.sqrt(variance);
+      const sigma = pop === 'uniform' ? Math.sqrt(1/12) : pop === 'skewed' ? Math.sqrt(4/45) : 0.2;
+      const se = sigma / Math.sqrt(n);
+      document.getElementById('cltMean').textContent = avg.toFixed(4);
+      document.getElementById('cltSd').textContent = sd.toFixed(4);
+      document.getElementById('cltSe').textContent = se.toFixed(4);
+      const bins = 30, min = Math.min(...means), max = Math.max(...means);
+      const counts = Array(bins).fill(0);
+      means.forEach(m => { const idx = Math.min(bins-1, Math.floor((m-min)/(max-min+1e-9)*bins)); counts[idx]++; });
+      if (window.cltChart) {
+        window.cltChart.data.labels = Array.from({length:bins}, (_,i) => (min + (max-min)*(i+0.5)/bins).toFixed(2);
+        window.cltChart.data.datasets[0].data = counts;
+        window.cltChart.update();
+      }
+    });
+
+    function updateProp() {
+      const p = parseVal('pProp', 0.55), n = parseVal('nProp', 100), k = parseVal('kProp', 0.57);
+      const se = Math.sqrt(p*(1-p)/n);
+      const z = (k - p) / se;
+      const prob = 1 - normCDF(z);
+      document.getElementById('seProp').textContent = se.toFixed(4);
+      document.getElementById('pPropVal').textContent = prob.toFixed(4);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      window.cltChart = new Chart(document.getElementById('cltChart').getContext('2d'), {
+        type: 'bar',
+        data: { labels: [], datasets: [{ label: 'Count', data: [], backgroundColor: 'rgba(122,162,247,0.7)' }] },
+        options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } }
+      });
+      updateSe();
+      updateProp();
+    });
+    ['sigma','nSe'].forEach(id => document.getElementById(id).addEventListener('input', updateSe));
+    ['pProp','nProp','kProp'].forEach(id => document.getElementById(id).addEventListener('input', updateProp));
+  </script>
+</body>
+</html>

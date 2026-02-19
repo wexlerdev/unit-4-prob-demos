@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.7 Confidence Intervals</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Unit 4: Probability and Statistical Inference</h1>
+    <p class="subtitle">4.7 — Confidence Intervals</p>
+  </header>
+
+  <main class="demo-page">
+    <a href="../index.html" class="back-link">← Back to all sections</a>
+
+    <h1>4.7: Confidence Intervals</h1>
+
+    <div class="concept-block">
+      <h2>What You'll Learn</h2>
+      <ul>
+        <li>Construct interval estimates: point estimate ± margin of error</li>
+        <li>Use z when \(\sigma\) is known, t when \(\sigma\) is unknown</li>
+        <li>Interpret: "We are 95% confident the true mean lies in this interval."</li>
+      </ul>
+      <p><strong>When to use:</strong> You have a sample and want to estimate a population parameter (mean or proportion). CI answers "where might the true value be?"</p>
+      <p><strong>Prerequisites:</strong> <a href="4.6-sampling.html">4.6</a> — sampling distribution of \(\bar{X}\).</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Overview</h2>
+      <p>A <strong>confidence interval</strong> (CI) is an interval estimate: a range that, with a specified level of confidence, contains the population parameter. General form: <strong>point estimate ± margin of error</strong>.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>CI for Mean When \(\sigma\) Is Known</h2>
+      <p>For a \(100(1-\alpha)\%\) confidence interval:</p>
+      <div class="formula">\[ \bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}} \]</div>
+      <p>\(z_{\alpha/2}\) = z-value with \(\alpha/2\) in upper tail. Common values: 90% → 1.645, 95% → 1.96, 99% → 2.576.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Factors Affecting Width</h2>
+      <p><strong>Wider</strong> interval: larger \(\sigma\), smaller \(n\), higher confidence level. <strong>Narrower</strong>: larger \(n\), smaller \(\sigma\), lower confidence.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>When \(\sigma\) Unknown: t-Distribution</h2>
+      <p>Use sample standard deviation \(s\). The statistic \(T = (\bar{X}-\mu)/(s/\sqrt{n})\) follows Student's t with \(df = n-1\). Heavier tails than normal; as \(df \to \infty\), t → z.</p>
+    </div>
+
+    <h2>Interactive Demos</h2>
+    <div class="demo-box">
+      <h3>CI for Mean (\(\sigma\) Known)</h3>
+      <p>Cereal boxes: \(\bar{x}=1.02\) lb, \(\sigma=0.03\), \(n=25\). 95% CI = [1.008, 1.032].</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label>\(\bar{x}\)</label>
+          <input type="number" id="xbar" value="1.02" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>\(\sigma\)</label>
+          <input type="number" id="sigma" value="0.03" min="0.001" step="0.001">
+        </div>
+        <div class="input-group">
+          <label>\(n\)</label>
+          <input type="number" id="n" value="25" min="2">
+        </div>
+        <div class="input-group">
+          <label>Confidence</label>
+          <select id="conf">
+            <option value="90">90%</option>
+            <option value="95" selected>95%</option>
+            <option value="99">99%</option>
+          </select>
+        </div>
+      </div>
+      <div class="result">
+        Margin of error = <span id="moe">0.0118</span><br>
+        95% CI: [<span id="ciLow">1.008</span>, <span id="ciHigh">1.032</span>]
+      </div>
+    </div>
+
+    <div class="demo-box">
+      <h3>Width Factors</h3>
+      <p>See how interval width changes with \(n\), \(\sigma\), and confidence level.</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label>\(n\)</label>
+          <input type="number" id="nW" value="25" min="5" max="500">
+        </div>
+        <div class="input-group">
+          <label>\(\sigma\)</label>
+          <input type="number" id="sigW" value="0.03" min="0.01" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>Confidence</label>
+          <select id="confW">
+            <option value="90">90%</option>
+            <option value="95" selected>95%</option>
+            <option value="99">99%</option>
+          </select>
+        </div>
+      </div>
+      <div class="result">Width = 2 × margin = <span id="width">0.0235</span></div>
+    </div>
+
+    <div class="demo-box">
+      <h3>CI When \(\sigma\) Unknown — t-Based Interval</h3>
+      <p>Use sample standard deviation \(s\). CI = \(\bar{x} \pm t_{\alpha/2} \cdot s/\sqrt{n}\) with \(df = n-1\). The t multiplier is larger than z for small \(n\), so the interval is wider.</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label>\(\bar{x}\)</label>
+          <input type="number" id="xBart" value="106" step="0.1">
+        </div>
+        <div class="input-group">
+          <label>\(s\)</label>
+          <input type="number" id="st" value="15" min="0.01" step="0.1">
+        </div>
+        <div class="input-group">
+          <label>\(n\)</label>
+          <input type="number" id="nt" value="22" min="2">
+        </div>
+        <div class="input-group">
+          <label>Confidence</label>
+          <select id="conft">
+            <option value="90">90%</option>
+            <option value="95" selected>95%</option>
+            <option value="99">99%</option>
+          </select>
+        </div>
+      </div>
+      <div class="result">
+        \(t_{\alpha/2}\) (df=<span id="dft">21</span>) = <span id="tVal">2.08</span> &nbsp;vs&nbsp; \(z_{\alpha/2}\) = <span id="zVal">1.96</span><br>
+        t-based CI: [<span id="ciLowT">99.34</span>, <span id="ciHighT">112.66</span>]<br>
+        <span id="iqNote">Does not contain 100 → at 95% confidence, firm's mean IQ differs from national 100.</span>
+      </div>
+    </div>
+
+    <div class="demo-box">
+      <h3>t vs z — When \(\sigma\) Unknown</h3>
+      <p>Use \(s\) instead of \(\sigma\). For \(n=10\), \(df=9\): \(t_{0.025} \approx 2.262\) vs \(z_{0.025}=1.96\). Larger multiplier → wider interval.</p>
+      <table class="demo-table">
+        <thead><tr><th>df</th><th>t (α=0.05)</th><th>z</th></tr></thead>
+        <tbody>
+          <tr><td>5</td><td>2.571</td><td>1.96</td></tr>
+          <tr><td>10</td><td>2.228</td><td>1.96</td></tr>
+          <tr><td>25</td><td>2.060</td><td>1.96</td></tr>
+          <tr><td>∞</td><td>1.960</td><td>1.96</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer><a href="../index.html">← Back to all sections</a></footer>
+
+  <script src="../js/shared.js"></script>
+  <script src="../js/flare.js"></script>
+  <script>
+    const zVals = { 90: 1.645, 95: 1.96, 99: 2.576 };
+    function parseVal(id, def) { const v = parseFloat(document.getElementById(id)?.value); return isNaN(v) ? def : v; }
+
+    function updateCI() {
+      const xbar = parseVal('xbar', 1.02), sig = parseVal('sigma', 0.03), n = parseVal('n', 25);
+      const conf = parseInt(document.getElementById('conf').value);
+      const z = zVals[conf] || 1.96;
+      const moe = z * sig / Math.sqrt(n);
+      document.getElementById('moe').textContent = moe.toFixed(4);
+      document.getElementById('ciLow').textContent = (xbar - moe).toFixed(3);
+      document.getElementById('ciHigh').textContent = (xbar + moe).toFixed(3);
+    }
+
+    let prevN = 25, prevWidth = 0.0235;
+    function updateWidth() {
+      const n = parseVal('nW', 25), sig = parseVal('sigW', 0.03);
+      const conf = parseInt(document.getElementById('confW').value);
+      const z = zVals[conf] || 1.96;
+      const moe = z * sig / Math.sqrt(n);
+      const w = 2 * moe;
+      document.getElementById('width').textContent = w.toFixed(4);
+      if (n > prevN && w < prevWidth && typeof showFlare === 'function') {
+        showFlare('CRACK', document.getElementById('nW')?.closest('.demo-box'), { size: 'small', key: 'ci' });
+      }
+      prevN = n;
+      prevWidth = w;
+    }
+
+    function updateTCI() {
+      const xbar = parseVal('xBart', 106), s = parseVal('st', 15), n = parseInt(parseVal('nt', 22));
+      const conf = parseInt(document.getElementById('conft')?.value || 95);
+      const alpha = (100 - conf) / 100;
+      const df = Math.max(1, n - 1);
+      const t = typeof tQuantile === 'function' ? tQuantile(df, alpha / 2) : 2.08;
+      const z = zVals[conf] || 1.96;
+      const se = s / Math.sqrt(n);
+      const moe = t * se;
+      const low = xbar - moe, high = xbar + moe;
+      document.getElementById('dft').textContent = df;
+      document.getElementById('tVal').textContent = t.toFixed(2);
+      document.getElementById('zVal').textContent = z.toFixed(2);
+      document.getElementById('ciLowT').textContent = low.toFixed(2);
+      document.getElementById('ciHighT').textContent = high.toFixed(2);
+      const contains100 = 100 >= low && 100 <= high;
+      document.getElementById('iqNote').textContent = contains100
+        ? 'Contains 100 → cannot conclude firm mean IQ differs from national 100.'
+        : 'Does not contain 100 → at ' + conf + '% confidence, firm\'s mean IQ differs from national 100.';
+    }
+    ['xBart','st','nt','conft'].forEach(id => { const el = document.getElementById(id); if (el) { el.addEventListener('input', updateTCI); el.addEventListener('change', updateTCI); } });
+
+    ['xbar','sigma','n','conf'].forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', updateCI); el?.addEventListener('change', updateCI); });
+    ['nW','sigW','confW'].forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', updateWidth); el?.addEventListener('change', updateWidth); });
+    updateCI(); updateWidth(); updateTCI();
+  </script>
+</body>
+</html>

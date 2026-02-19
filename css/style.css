@@ -1,0 +1,323 @@
+/* Unit 4 Probability Demos — Shared styles */
+@import url('flare.css');
+
+:root {
+  --bg: #1a1b26;
+  --surface: #24283b;
+  --text: #c0caf5;
+  --text-dim: #a9b1d6;
+  --accent: #7aa2f7;
+  --accent-2: #bb9af7;
+  --success: #9ece6a;
+  --warning: #e0af68;
+  --error: #f7768e;
+  --radius: 8px;
+  --font: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header */
+header {
+  padding: 2rem;
+  text-align: center;
+  background: var(--surface);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+.subtitle {
+  margin: 0.5rem 0 0;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+/* Navigation hub grid */
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.nav-card {
+  display: block;
+  padding: 1.25rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: border-color 0.2s, transform 0.15s;
+}
+.nav-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.nav-num {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.nav-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.nav-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+.nav-prereq {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--accent-2);
+  opacity: 0.9;
+}
+
+/* Flow block — conceptual overview */
+.flow-block {
+  max-width: 900px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+}
+.flow-block h2 {
+  font-size: 1rem;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+.flow-block p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* Demo page layout */
+.demo-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.demo-page h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.demo-page .back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* Concept block — learning objectives, when to use */
+.concept-block {
+  background: linear-gradient(135deg, rgba(122,162,247,0.08) 0%, rgba(187,154,247,0.06) 100%);
+  border: 1px solid rgba(122,162,247,0.2);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0 2rem;
+}
+.concept-block h2 {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+.concept-block ul {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.5rem;
+}
+.concept-block li {
+  margin-bottom: 0.35rem;
+  color: var(--text-dim);
+}
+.concept-block p {
+  margin: 0.5rem 0 0;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+.concept-block strong {
+  color: var(--text);
+}
+
+/* Content sections */
+.content-section {
+  margin-bottom: 2rem;
+}
+.content-section h2 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin: 1.5rem 0 0.75rem;
+  font-weight: 600;
+}
+.content-section h3 {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin: 1rem 0 0.5rem;
+}
+.content-section p {
+  margin: 0 0 0.75rem;
+  color: var(--text-dim);
+}
+.content-section ul, .content-section ol {
+  margin: 0.5rem 0 1rem;
+  padding-left: 1.5rem;
+}
+.content-section li {
+  margin-bottom: 0.35rem;
+}
+.content-section .formula {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+.content-section .katex-display {
+  margin: 0.75rem 0;
+}
+
+/* Demo boxes */
+.demo-box {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+.demo-box h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--accent-2);
+}
+.demo-box label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-dim);
+}
+.demo-box input[type="number"],
+.demo-box input[type="text"],
+.demo-box select {
+  width: 100%;
+  max-width: 140px;
+  padding: 0.5rem;
+  margin: 0 0.5rem 0.5rem 0;
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+.demo-box input[type="range"] {
+  width: 100%;
+  max-width: 200px;
+  margin: 0.5rem 0;
+}
+.demo-box .input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+.demo-box .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.demo-box .result {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: rgba(0,0,0,0.25);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+.demo-box .result .value {
+  color: var(--success);
+  font-weight: 600;
+}
+.demo-box canvas {
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+/* Tables */
+.demo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+.demo-table th,
+.demo-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.demo-table th {
+  background: rgba(0,0,0,0.2);
+  color: var(--accent);
+  font-weight: 600;
+}
+.demo-table .highlight {
+  background: rgba(122, 162, 247, 0.15);
+}
+.demo-table .error-cell {
+  background: rgba(247, 118, 142, 0.15);
+}
+
+/* Footer */
+footer {
+  padding: 1.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.9rem;
+}
+
+/* KaTeX adjustments */
+.katex {
+  font-size: 1.05em;
+}
+.katex-display {
+  font-size: 1.1em;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .nav-grid {
+    padding: 0 1rem;
+  }
+  .demo-page {
+    padding: 1rem;
+  }
+}

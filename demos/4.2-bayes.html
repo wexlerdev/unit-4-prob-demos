@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.2 Total Probability &amp; Bayes' Theorem</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Unit 4: Probability and Statistical Inference</h1>
+    <p class="subtitle">4.2 — Total Probability and Bayes' Theorem</p>
+  </header>
+
+  <main class="demo-page">
+    <a href="../index.html" class="back-link">← Back to all sections</a>
+
+    <h1>4.2: Total Probability and Bayes' Theorem</h1>
+
+    <div class="concept-block">
+      <h2>What You'll Learn</h2>
+      <ul>
+        <li>Update beliefs (prior → posterior) when new evidence appears</li>
+        <li>Interpret medical tests, lie detectors, and spam filters correctly</li>
+      </ul>
+      <p><strong>When to use:</strong> You have prior odds (e.g., base rate of disease) and likelihoods (sensitivity, specificity). Bayes turns "test says positive" into "probability actually diseased."</p>
+      <p><strong>Prerequisites:</strong> <a href="4.1-probability-concepts.html">4.1</a> — conditional probability \(P(A|B)\), joint probability.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Total Probability Rule</h2>
+      <p>When we partition the sample space into mutually exclusive, exhaustive events (e.g., \(B\) and \(B^c\)), the probability of any event \(A\) can be written as the sum of its intersections with each part:</p>
+      <div class="formula">\[ P(A) = P(A \cap B) + P(A \cap B^c) \]</div>
+      <p>Using the joint formula \(P(A \cap B) = P(A|B) \cdot P(B)\), we get:</p>
+      <div class="formula">\[ P(A) = P(A|B) \cdot P(B) + P(A|B^c) \cdot P(B^c) \]</div>
+    </div>
+
+    <div class="content-section">
+      <h2>Bayes' Theorem</h2>
+      <p><strong>Prior probability</strong> \(P(B)\): our belief before seeing evidence. <strong>Posterior probability</strong> \(P(B|A)\): updated belief after observing \(A\). Bayes' theorem computes the posterior:</p>
+      <div class="formula">\[ P(B|A) = \frac{P(A|B) \cdot P(B)}{P(A)} = \frac{P(A|B) \cdot P(B)}{P(A|B) \cdot P(B) + P(A|B^c) \cdot P(B^c)} \]</div>
+      <p>Useful when: medical tests (disease given positive result), lie detectors (truth given "lie" reading), spam filters, etc.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Lie Detector Example — Setup</h2>
+      <p>Assume 99% tell the truth, test is 95% reliable at detecting lies, but 0.5% false positive (detects lie when telling truth). If the test detects a lie, what is the probability the person was actually telling the truth?</p>
+      <ul>
+        <li>\(D\) = test detects a lie</li>
+        <li>\(T\) = telling the truth, \(T^c\) = lying</li>
+        <li>\(P(T) = 0.99\), \(P(T^c) = 0.01\)</li>
+        <li>\(P(D|T) = 0.005\) (false positive)</li>
+        <li>\(P(D|T^c) = 0.95\) (true positive)</li>
+      </ul>
+    </div>
+
+    <h2>Interactive Demo: Lie Detector</h2>
+    <div class="demo-box">
+      <p>Adjust the parameters and see the solution table update. The posterior \(P(T|D)\) answers: "Given the test said 'lie', what's the chance they were actually telling the truth?"</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label>\(P(T)\) — prior truth</label>
+          <input type="number" id="pT" value="0.99" min="0" max="1" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>\(P(D|T)\) — false positive</label>
+          <input type="number" id="pDgT" value="0.005" min="0" max="1" step="0.001">
+        </div>
+        <div class="input-group">
+          <label>\(P(D|T^c)\) — true positive</label>
+          <input type="number" id="pDgTc" value="0.95" min="0" max="1" step="0.01">
+        </div>
+      </div>
+      <table class="demo-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Prior \(P\)</th>
+            <th>Conditional \(P(D|\cdot)\)</th>
+            <th>Joint \(P(D \cap \cdot)\)</th>
+            <th>Posterior \(P(\cdot|D)\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(T\) (truth)</td>
+            <td id="priorT">0.99</td>
+            <td id="condT">0.005</td>
+            <td id="jointT">0.00495</td>
+            <td id="postT">—</td>
+          </tr>
+          <tr>
+            <td>\(T^c\) (lying)</td>
+            <td id="priorTc">0.01</td>
+            <td id="condTc">0.95</td>
+            <td id="jointTc">0.0095</td>
+            <td id="postTc">—</td>
+          </tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td>1</td>
+            <td>—</td>
+            <td id="pD">0.01445</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="result" style="margin-top: 1rem;">
+        <strong>\(P(T|D)\)</strong> = <span id="postTVal" class="value">0.3426</span> (probability they were telling truth given "lie" reading)<br>
+        <strong>\(P(T^c|D)\)</strong> = <span id="postTcVal" class="value">0.6574</span>
+      </div>
+    </div>
+
+    <h2>Interactive Demo: Medical Screening</h2>
+    <div class="demo-box">
+      <p><strong>Scenario:</strong> A screening test for a rare disease. Even with 95% sensitivity and 95% specificity, when the disease is rare (e.g., 1%), most positive results are false positives. Bayes answers: "Given a positive test, what's the chance I actually have the disease?"</p>
+      <p>Classic result: 1% prevalence, 95% sensitivity, 5% false positive → \(P(\text{disease}|\text{positive}) \approx 16\%\)</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label>\(P(D)\) — disease prevalence (prior)</label>
+          <input type="number" id="pDisease" value="0.01" min="0.001" max="0.5" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>Sensitivity \(P(\text{+}|D)\)</label>
+          <input type="number" id="pPosGivenD" value="0.95" min="0" max="1" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>False positive \(P(\text{+}|D^c)\)</label>
+          <input type="number" id="pPosGivenNotD" value="0.05" min="0" max="1" step="0.01">
+        </div>
+      </div>
+      <table class="demo-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Prior</th>
+            <th>\(P(\text{+}|\cdot)\)</th>
+            <th>Joint</th>
+            <th>Posterior \(P(\cdot|\text{+})\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(D\) (disease)</td>
+            <td id="priorD">0.01</td>
+            <td id="condD">0.95</td>
+            <td id="jointD">0.0095</td>
+            <td id="postD">—</td>
+          </tr>
+          <tr>
+            <td>\(D^c\) (no disease)</td>
+            <td id="priorNotD">0.99</td>
+            <td id="condNotD">0.05</td>
+            <td id="jointNotD">0.0495</td>
+            <td id="postNotD">—</td>
+          </tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td>1</td>
+            <td>—</td>
+            <td id="pPos">0.059</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="result" style="margin-top: 1rem;">
+        <strong>\(P(D|\text{positive})\)</strong> = <span id="postDVal" class="value">0.161</span> (probability of disease given positive test)
+      </div>
+    </div>
+  </main>
+
+  <footer><a href="../index.html">← Back to all sections</a></footer>
+
+  <script src="../js/shared.js"></script>
+  <script src="../js/flare.js"></script>
+  <script>
+    function parseVal(id, def) {
+      const v = parseFloat(document.getElementById(id)?.value);
+      return isNaN(v) ? def : v;
+    }
+    function updateBayes() {
+      const pT = parseVal('pT', 0.99);
+      const pDgT = parseVal('pDgT', 0.005);
+      const pDgTc = parseVal('pDgTc', 0.95);
+      const pTc = 1 - pT;
+      const jointT = pDgT * pT;
+      const jointTc = pDgTc * pTc;
+      const pD = jointT + jointTc;
+      const postT = pD > 0 ? jointT / pD : 0;
+      const postTc = pD > 0 ? jointTc / pD : 0;
+
+      document.getElementById('priorT').textContent = pT.toFixed(2);
+      document.getElementById('priorTc').textContent = pTc.toFixed(2);
+      document.getElementById('condT').textContent = pDgT.toFixed(3);
+      document.getElementById('condTc').textContent = pDgTc.toFixed(2);
+      document.getElementById('jointT').textContent = jointT.toFixed(5);
+      document.getElementById('jointTc').textContent = jointTc.toFixed(4);
+      document.getElementById('pD').textContent = pD.toFixed(5);
+      document.getElementById('postT').textContent = postT.toFixed(4);
+      document.getElementById('postTc').textContent = postTc.toFixed(4);
+      document.getElementById('postTVal').textContent = postT.toFixed(4);
+      document.getElementById('postTcVal').textContent = postTc.toFixed(4);
+    }
+    function updateMedical() {
+      const pD = parseVal('pDisease', 0.01);
+      const pPosD = parseVal('pPosGivenD', 0.95);
+      const pPosNotD = parseVal('pPosGivenNotD', 0.05);
+      const pNotD = 1 - pD;
+      const jointD = pPosD * pD;
+      const jointNotD = pPosNotD * pNotD;
+      const pPos = jointD + jointNotD;
+      const postD = pPos > 0 ? jointD / pPos : 0;
+      const postNotD = pPos > 0 ? jointNotD / pPos : 0;
+
+      document.getElementById('priorD').textContent = pD.toFixed(2);
+      document.getElementById('priorNotD').textContent = pNotD.toFixed(2);
+      document.getElementById('condD').textContent = pPosD.toFixed(2);
+      document.getElementById('condNotD').textContent = pPosNotD.toFixed(2);
+      document.getElementById('jointD').textContent = jointD.toFixed(4);
+      document.getElementById('jointNotD').textContent = jointNotD.toFixed(4);
+      document.getElementById('pPos').textContent = pPos.toFixed(4);
+      document.getElementById('postD').textContent = postD.toFixed(4);
+      document.getElementById('postNotD').textContent = postNotD.toFixed(4);
+      document.getElementById('postDVal').textContent = postD.toFixed(3);
+    }
+    let bayesDebounce;
+    function debouncedFlare() {
+      clearTimeout(bayesDebounce);
+      bayesDebounce = setTimeout(function() {
+        if (typeof showFlare === 'function') {
+          showFlare('KAPOW', document.querySelector('.demo-table'), { size: 'subtle', key: 'bayes' });
+        }
+      }, 400);
+    }
+    function onBayesInput() { updateBayes(); debouncedFlare(); }
+    function onMedicalInput() { updateMedical(); debouncedFlare(); }
+    ['pT','pDgT','pDgTc'].forEach(id => document.getElementById(id).addEventListener('input', onBayesInput));
+    ['pDisease','pPosGivenD','pPosGivenNotD'].forEach(id => document.getElementById(id).addEventListener('input', onMedicalInput));
+    updateBayes();
+    updateMedical();
+  </script>
+</body>
+</html>
