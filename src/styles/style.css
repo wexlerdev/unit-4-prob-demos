@@ -156,6 +156,26 @@ header h1 {
   line-height: 1.5;
 }
 
+/* Page content wrapper with space background */
+.page-content {
+  position: relative;
+  min-height: calc(100vh - 160px);
+  overflow: hidden;
+}
+.space-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.page-content > :not(.space-bg) {
+  position: relative;
+  z-index: 1;
+}
+
 /* Demo page layout */
 .demo-page {
   max-width: 900px;
@@ -355,26 +375,6 @@ footer {
 }
 .katex-display {
   font-size: 1.1em;
-}
-
-/* Belarus time indicator — top right */
-.belarus-indicator {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius);
-  font-size: 0.85rem;
-  font-weight: 500;
-  z-index: 1000;
-}
-.belarus-indicator.midnight {
-  background: var(--error);
-  color: white;
-}
-.belarus-indicator.ok {
-  background: var(--success);
-  color: var(--accent-fg);
 }
 
 /* Responsive */

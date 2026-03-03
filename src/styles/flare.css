@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'Bangers', Impact, 'Comic Sans MS', fantasy;
-  font-size: 3rem;
+  font-size: 9rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -53,11 +53,11 @@
 
 /* Size variants */
 .flare-bubble.flare-small {
-  font-size: 1.5rem;
+  font-size: 4.5rem;
 }
 
 .flare-bubble.flare-big {
-  font-size: 4.5rem;
+  font-size: 13.5rem;
   text-shadow:
     4px 4px 0 #f5d547,
     -3px -3px 0 #c4b5fd,
@@ -65,7 +65,7 @@
 }
 
 .flare-bubble.flare-subtle {
-  font-size: 1.25rem;
+  font-size: 3.75rem;
   opacity: 0.9;
 }
 

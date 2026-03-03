@@ -1,6 +1,16 @@
 const THROTTLE_MS = 800;
 const lastFlareByKey = {};
 
+const SOUNDS = [
+  'POW', 'BAM', 'ZAP', 'WHAM', 'BOOM',
+  'KAPOW', 'CRACK', 'BONK', 'SPLAT', 'THWACK',
+  'CRUNCH', 'SNAP', 'WHOOSH', 'ZING', 'BLAM',
+];
+
+function randomSound() {
+  return SOUNDS[Math.floor(Math.random() * SOUNDS.length)];
+}
+
 export function showFlare(text, targetEl, options) {
   const opts = options || {};
   const size = opts.size || 'normal';
@@ -20,7 +30,7 @@ export function showFlare(text, targetEl, options) {
   if (size !== 'normal') {
     bubble.classList.add('flare-' + size);
   }
-  bubble.textContent = String(text).toUpperCase();
+  bubble.textContent = randomSound();
 
   if (targetEl && targetEl.getBoundingClientRect) {
     const rect = targetEl.getBoundingClientRect();
