@@ -388,6 +388,11 @@ footer {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .flow-block {
+    display: none;
+  }
+}
 @media (max-width: 600px) {
   .nav-grid {
     padding: 0 1rem;
