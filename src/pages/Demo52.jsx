@@ -90,7 +90,7 @@ export default function Demo52() {
 
   return (
     <main className="demo-page">
-      <Link to="/" className="back-link">← Back to all sections</Link>
+      <Link to="/" className="back-link">← Back to Unit 5 — Regression Analysis</Link>
       <h1>5.2: The Regression Equation &amp; OLS</h1>
 
       <div className="concept-block">

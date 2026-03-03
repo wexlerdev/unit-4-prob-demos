@@ -1,20 +1,20 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import SpaceBackground from './SpaceBackground';
 
 export default function Layout() {
+  const { pathname } = useLocation();
+  const isUnit5 = pathname.startsWith('/5.');
+  const isDemo = pathname.startsWith('/4.') || pathname.startsWith('/5.');
+
   return (
     <>
-      <header>
-        <h1>Big Data Analytics — Interactive Demos</h1>
-        <p className="subtitle">CMP-SC 4350/7350</p>
-      </header>
-      <div className="page-content">
-        <SpaceBackground />
-        <Outlet />
-      </div>
-      <footer>
-        <Link to="/">← Back to all sections</Link>
-      </footer>
+      <SpaceBackground />
+      <Outlet />
+      {isDemo && (
+        <footer>
+          <Link to="/">← Back to {isUnit5 ? 'Unit 5 — Regression Analysis' : 'Unit 4 — Probability & Inference'} hub</Link>
+        </footer>
+      )}
     </>
   );
 }

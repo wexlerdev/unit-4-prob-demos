@@ -37,32 +37,38 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Header */
-header {
-  padding: 2rem;
-  text-align: center;
-  background: var(--surface);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-header h1 {
-  margin: 0;
-  font-size: 1.75rem;
-  font-weight: 600;
-}
-.subtitle {
-  margin: 0.5rem 0 0;
-  color: var(--text-dim);
-  font-size: 0.95rem;
-}
-
-/* Tab bar */
+/* Nav bar (logo + tabs) */
 .tab-bar {
+  position: relative;
+  z-index: 1;
   display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem 1.5rem 0;
+  align-items: center;
+  padding: 0 1.5rem;
   background: var(--surface);
   border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  margin-right: auto;
+  white-space: nowrap;
+}
+.nav-logo-icon {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.nav-logo:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
+.tab-buttons {
+  display: flex;
+  gap: 0.25rem;
 }
 .tab-btn {
   padding: 0.6rem 1.5rem;
@@ -92,6 +98,8 @@ header h1 {
 
 /* Navigation hub grid */
 .nav-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.25rem;
@@ -139,9 +147,13 @@ header h1 {
 
 /* Flow block — conceptual overview */
 .flow-block {
+  position: relative;
+  z-index: 1;
   max-width: 900px;
   margin: 1.5rem auto 0;
-  padding: 0 1.5rem;
+  padding: 1rem 1.5rem;
+  background: rgba(30, 27, 46, 0.9);
+  border-radius: var(--radius);
 }
 .flow-block h2 {
   font-size: 1rem;
@@ -156,12 +168,7 @@ header h1 {
   line-height: 1.5;
 }
 
-/* Page content wrapper with space background */
-.page-content {
-  position: relative;
-  min-height: calc(100vh - 160px);
-  overflow: hidden;
-}
+/* Space background — fixed behind everything */
 .space-bg {
   position: fixed;
   top: 0;
@@ -171,16 +178,16 @@ header h1 {
   z-index: 0;
   pointer-events: none;
 }
-.page-content > :not(.space-bg) {
-  position: relative;
-  z-index: 1;
-}
 
 /* Demo page layout */
 .demo-page {
+  position: relative;
+  z-index: 1;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 1.5rem auto;
   padding: 2rem 1.5rem;
+  background: rgba(30, 27, 46, 0.9);
+  border-radius: var(--radius);
 }
 .demo-page h1 {
   font-size: 1.75rem;
@@ -363,10 +370,13 @@ header h1 {
 
 /* Footer */
 footer {
+  position: relative;
+  z-index: 1;
   padding: 1.5rem 2rem;
   text-align: center;
   border-top: 1px solid rgba(255,255,255,0.06);
   font-size: 0.9rem;
+  background: var(--surface);
 }
 
 /* KaTeX adjustments */

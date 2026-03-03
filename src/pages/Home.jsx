@@ -86,8 +86,18 @@ export default function Home() {
   return (
     <>
       <nav className="tab-bar">
-        <button className={`tab-btn ${tab === 'unit4' ? 'active' : ''}`} onClick={() => setTab('unit4')}>Unit 4</button>
-        <button className={`tab-btn ${tab === 'unit5' ? 'active' : ''}`} onClick={() => setTab('unit5')}>Unit 5</button>
+        <Link to="/" className="nav-logo">
+          <svg className="nav-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3" />
+            <path d="M21 12c0 1.66-4.03 3-9 3s-9-1.34-9-3" />
+            <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+          </svg>
+          Big Data
+        </Link>
+        <div className="tab-buttons">
+          <button className={`tab-btn ${tab === 'unit4' ? 'active' : ''}`} onClick={() => setTab('unit4')}>Unit 4</button>
+          <button className={`tab-btn ${tab === 'unit5' ? 'active' : ''}`} onClick={() => setTab('unit5')}>Unit 5</button>
+        </div>
       </nav>
 
       {tab === 'unit4' && (

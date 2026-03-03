@@ -50,7 +50,7 @@ export default function Demo53() {
 
   return (
     <main className="demo-page">
-      <Link to="/" className="back-link">← Back to all sections</Link>
+      <Link to="/" className="back-link">← Back to Unit 5 — Regression Analysis</Link>
       <h1>5.3: Interpreting Coefficients &amp; Residuals</h1>
 
       <div className="concept-block">

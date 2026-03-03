@@ -2,9 +2,7 @@ const THROTTLE_MS = 800;
 const lastFlareByKey = {};
 
 const SOUNDS = [
-  'POW', 'BAM', 'ZAP', 'WHAM', 'BOOM',
-  'KAPOW', 'CRACK', 'BONK', 'SPLAT', 'THWACK',
-  'CRUNCH', 'SNAP', 'WHOOSH', 'ZING', 'BLAM',
+  'Any Question.', 'Look Here.', 'Hello',
 ];
 
 function randomSound() {

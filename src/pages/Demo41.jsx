@@ -52,7 +52,7 @@ export default function Demo41() {
 
   return (
     <main className="demo-page">
-      <Link to="/" className="back-link">← Back to all sections</Link>
+      <Link to="/" className="back-link">← Back to Unit 4 — Probability &amp; Inference</Link>
       <h1>4.1: Probability Concepts and Rules</h1>
 
       <div className="concept-block">

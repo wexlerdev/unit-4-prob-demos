@@ -69,7 +69,7 @@ export default function Demo54() {
 
   return (
     <main className="demo-page">
-      <Link to="/" className="back-link">← Back to all sections</Link>
+      <Link to="/" className="back-link">← Back to Unit 5 — Regression Analysis</Link>
       <h1>5.4: Goodness of Fit</h1>
 
       <div className="concept-block">

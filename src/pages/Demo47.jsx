@@ -57,7 +57,7 @@ export default function Demo47() {
 
   return (
     <main className="demo-page">
-      <Link to="/" className="back-link">← Back to all sections</Link>
+      <Link to="/" className="back-link">← Back to Unit 4 — Probability &amp; Inference</Link>
       <h1>4.7: Confidence Intervals</h1>
 
       <div className="concept-block">
