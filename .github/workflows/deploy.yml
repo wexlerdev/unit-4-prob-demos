@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+# When does this run?
+on:
+  push:
+    branches: [main]       # every push to main triggers a deploy
+
+# What permissions does the job need?
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy at a time
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    # Tell GitHub this job deploys to the "github-pages" environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # 1. Check out your code
+      - uses: actions/checkout@v4
+
+      # 2. Set up Node so we can run npm
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # 3. Install dependencies
+      - run: npm ci
+
+      # 4. Build the production bundle (output goes to dist/)
+      - run: npm run build
+
+      # 5. Package dist/ for GitHub Pages
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      # 6. Deploy to Pages
+      - id: deployment
+        uses: actions/deploy-pages@v4
