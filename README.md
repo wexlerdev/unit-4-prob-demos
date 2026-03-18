@@ -1,28 +1,46 @@
-# Unit 4: Probability and Statistical Inference — Demos
+# Big Data Analytics — Interactive Demos
 
-Interactive web demos for Big Data Analytics (CMP-SC 4350/7350), Unit 4.
+A collection of interactive demos covering probability, statistical inference, and regression analysis for CMP-SC 4350/7350 (Big Data Analytics).
 
-## How to run
+**Live site:** [bigdata.rodeo](https://bigdata.rodeo)
 
-Open `index.html` in a web browser. No build step or server required.
+## What it does
+
+The app walks through two units of course material with interactive visualizations:
+
+**Unit 4 — Probability & Statistical Inference**
+- Probability concepts, Bayes' theorem, discrete random variables
+- Binomial & Poisson distributions, normal distribution
+- Sampling distributions, confidence intervals, hypothesis testing
+
+**Unit 5 — Regression Analysis**
+- Linear regression model, goodness-of-fit, significance tests
+- Model assumptions & violations, interaction variables
+- Nonlinear relationships, cross-validation, full workflow
+
+Each section has interactive controls — sliders, inputs, and live-updating charts — so you can adjust parameters and see how formulas and distributions respond in real time.
+
+The landing page features a 3D question mark model with particle effects, built with Three.js.
+
+## Tech stack
+
+- React 18 + Vite
+- Chart.js / react-chartjs-2 for visualizations
+- KaTeX for math rendering
+- Three.js for the 3D landing scene (Draco-compressed GLB model)
+- Deployed on Cloudflare Pages
+
+## Running locally
 
 ```bash
-# From this folder:
-open index.html
-
-# Or use a simple HTTP server (optional):
-python3 -m http.server 8000
-# Then visit http://localhost:8000
+npm install
+npm run dev
 ```
 
-## Structure
+## Building
 
-- `index.html` — Navigation hub
-- `css/style.css` — Shared styles
-- `js/shared.js` — KaTeX rendering and utilities
-- `demos/` — One HTML file per section (4.1–4.8)
+```bash
+npm run build
+```
 
-## Dependencies (CDN)
-
-- KaTeX (math rendering)
-- Chart.js (graphs) — loaded in demos that need it
+Output goes to `dist/`.
