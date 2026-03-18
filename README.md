@@ -4,6 +4,8 @@ A collection of interactive demos covering probability, statistical inference, a
 
 **Live site:** [bigdata.rodeo](https://bigdata.rodeo)
 
+![Demo](./demo.gif)
+
 ## What it does
 
 The app walks through two units of course material with interactive visualizations:
